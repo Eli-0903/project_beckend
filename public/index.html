@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 20%; }
+    .number-display { font-size: 3em; color: #333; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Information for user Health</h1>
+  <div class="number-display" id="random-number">0</div>
+
+  <script>
+    function fetchRandomNumber() {
+      fetch('http://localhost:3000/random')
+        .then(response => response.json())
+        .then(number => {
+          document.getElementById('random-number').textContent = number;
+        })
+        .catch(error => console.error('Error fetching random number:', error));
+    }
+
+    setInterval(fetchRandomNumber, 10000); 
+    fetchRandomNumber(); 
+  </script>
+</body>
+</html>
